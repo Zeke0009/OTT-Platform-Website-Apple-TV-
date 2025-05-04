@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html ng-app="appleTVApp" lang="en">
+<head>
+    <title>Apple TV+</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="TVController" ng-class="{'menu-open': isMenuOpen}">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <button class="menu-toggle" ng-click="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo">
+                <i class="fab fa-apple"></i>
+                <span>TV+</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">Watch Now</a>
+                <a href="#">Originals</a>
+                <a href="#">Movies</a>
+                <a href="#">Kids</a>
+            </div>
+            <div class="nav-actions">
+                <button class="search-btn" ng-click="toggleSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-box" ng-class="{'active': isSearchOpen}">
+                    <input type="text" placeholder="Search Apple TV+" ng-model="searchQuery">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Side Menu -->
+    <aside class="side-menu">
+        <div class="menu-header">
+            <div class="user-profile">
+                <i class="fas fa-user-circle"></i>
+                <span>Your Name</span>
+            </div>
+        </div>
+        <nav class="menu-links">
+            <a href="#"><i class="fas fa-play-circle"></i> Watch Now</a>
+            <a href="#"><i class="fas fa-crown"></i> Originals</a>
+            <a href="#"><i class="fas fa-film"></i> Movies</a>
+            <a href="#"><i class="fas fa-child"></i> Kids</a>
+            <a href="#"><i class="fas fa-download"></i> Downloads</a>
+            <a href="#"><i class="fas fa-heart"></i> Favorites</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Carousel -->
+        <section class="hero-carousel">
+            <div class="carousel-container" ng-style="{'transform': 'translateX(' + (-currentSlide * 100) + '%)'}">
+                <div class="carousel-slide" ng-repeat="slide in heroSlides" ng-style="{'background-image': 'url(' + slide.image + ')'}">
+                    <div class="slide-content">
+                        <img ng-src="{{slide.logo}}" alt="{{slide.title}}" class="slide-logo" ng-if="slide.logo">
+                        <h2 ng-if="!slide.logo">{{slide.title}}</h2>
+                        <p>{{slide.description}}</p>
+                        <div class="slide-actions">
+                            <button class="btn-play">
+                                <i class="fas fa-play"></i> Play Now
+                            </button>
+                            <button class="btn-more">
+                                <i class="fas fa-info-circle"></i> More Info
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-indicators">
+                <span ng-repeat="slide in heroSlides" 
+                      ng-class="{'active': $index === currentSlide}"
+                      ng-click="goToSlide($index)"></span>
+            </div>
+        </section>
+
+        <!-- Content Rows -->
+        <section class="content-rows">
+            <div class="content-row" ng-repeat="row in contentRows">
+                <h3 class="row-title">{{row.title}}</h3>
+                <div class="row-container">
+                    <div class="row-scroll">
+                        <div class="content-card" ng-repeat="item in row.items">
+                            <div class="card-poster" ng-style="{'background-image': 'url(' + item.poster + ')'}">
+                                <div class="card-overlay">
+                                    <button class="btn-play-sm">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                    <button class="btn-add">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-info">
+                                <h4>{{item.title}}</h4>
+                                <p>{{item.info}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Overlay -->
+    <div class="overlay" ng-click="closeMenu()" ng-if="isMenuOpen"></div>
+</body>
+</html>
