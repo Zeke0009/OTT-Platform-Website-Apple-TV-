@@ -1,4 +1,3 @@
-# OTT-Platform-Website-Apple-TV-
 #  OTT-Platform-Website-Apple-TV- Clone
 
 ## 📝 Project Description
@@ -45,7 +44,7 @@ To get a local copy up and running, follow these simple steps:
 
 | Home Page | Trending Section |
 | :---: | :---: |
-| [![Screenshot 1](link-to-screenshot-1.png)](link-to-full-image-1) | [![Screenshot 2](link-to-screenshot-2.png)](link-to-full-image-2) |
+| <img width="1440" alt="1" src="https://github.com/user-attachments/assets/9407c050-d28e-4189-acce-6ae6070f434a" />>| <img width="1440" alt="4" src="https://github.com/user-attachments/assets/b92b3044-fa15-4a9d-b1d9-5759ebeb9a78" /> |
 
 
 The project directory contains the following key files and folders:
